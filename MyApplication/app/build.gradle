@@ -22,6 +22,7 @@ android {
         debug {
         }
         release {
+            proguardFile('proguard-rules.pro')
             minifyEnabled true
         }
         travisCI {
