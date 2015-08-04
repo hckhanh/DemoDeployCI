@@ -1,4 +1,7 @@
 language: android
+branches:
+  only:
+    - master
 env:
   global:
   - ANDROID_ABI=armeabi-v7a
@@ -29,4 +32,5 @@ deploy:
   file: "./app/build/outputs/apk/app-${BUILD_TYPE}.apk"
   skip_cleanup: true
   on:
+    branch: master
     tags: true
