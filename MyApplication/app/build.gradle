@@ -22,11 +22,11 @@ android {
         debug {
         }
         release {
-            minifyEnabled true
+            minifyEnabled false
         }
         travisCI {
             signingConfig signingConfigs.configTravisCI
-            minifyEnabled true
+            minifyEnabled false
         }
     }
     productFlavors {

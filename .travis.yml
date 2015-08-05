@@ -4,8 +4,6 @@ branches:
     - master
 env:
   global:
-  - ANDROID_ABI=armeabi-v7a
-  - ANDROID_TARGET=android-22
   - BUILD_TYPE=travisCI
   - secure: gpPRUeryzzOrwLYeplb6q4YxrlWIIeycE1UmITITs8s4CLc+DQRmw183JKs6mpGBQ/69j0qcT86JtXrsMT/F5QbQnU4zEVF2vjKHHfAhxmBtYOvQMhfsz5WVx3BWAW9GqABG+0IFdn6Dti9sDbosL7Zt3zQkMiMq8kDJjYLQR6dpDx7AuVleDRS5x7C+MHQNE0w6o/hzyauoSOFruljgBKu/p/I/fguMwAxIrvN3PRZJecA8j+LGmx7QhZYNr4CtmXxjLr8G8f+1kQGgQexWSD8KRTKEppGrgoVOD6wayVhwXeckdBK5BsNGFnLGGvclQKXA/yZ/+rBtxSHQmF+8XSvjZMmwssHoLK6h0fhO4xhgOka5Xmo1FwqwGtOfMnqjf7tI1NFxlR/jHQnjWCZ4/RNTqPKVaPIW91Fd96u2HU4lV8sEaKt1vEq39hB9tluAuFhzpY7UQyF3fJkLOC8+9Xq6yZDrC736Hi/BMVJuJaf3zrEA31sIA3AuPXDsXHP6NEEHf2Q9CgYSWLgMKESWtbjJryS+vOaD+qlpkN+RAOdeoj4p2LH7oiQkZSfMpShOC63tsQKSWV6g8mwl+BLI0AUdxgvvyzRP4sBTLFGBVWKmvc4g0bq0OVl/pJPemCjSl8ujqx660tGoAVdImZeK3eI13gi0i9IlaJpeVnKWhpU=
 git:
@@ -21,16 +19,15 @@ android:
   - extra-google-google_play_services
   - extra-google-m2repository
   - extra-android-m2repository
-  - sys-img-$ANDROID_ABI-$ANDROID_TARGET
 script:
-- cd ./MyApplication/
-- "./gradlew assemble$BUILD_TYPE"
-- echo $ADB_INSTALL_TIMEOUT
+- cd MyApplication/
+- ./gradlew assemble$BUILD_TYPE
 deploy:
   provider: releases
   api_key:
     secure: IMzQ6dfbJxDGF4L7gRATTT+YTWY9D/998rW2ZHSvXKkYjHWZrFYg7Jyo43q7CqZOKL+pgujAfYsxycu4H5s844yXLwGaChgpflLFo3mGODGgoRmsniIc91WSpYJKR+Oe8d3e8eAQbhDiGDTaJ4fI0R2YhIRuxlAKlP9x73t27HOFwVPQ+CcS/tT/HMfJ4hRfY3zcHSLv+Gs/sFUIUmh7Yz2lMrYe8q8YQy/U1uTb10K7N8nbrJoi4RTco2Ryijoz5e/K4q/5nuHEbgzFdLLw9fFCPbzAmoqKxT54v4CGueTifR5hgT4SCjCEYW8+Spy1LuXlLPkhU2Ih0NvXXGinM0pZZkg4l/CDgM5C5z+byobWdInVuhEsrM9Npl9amslTdCfkOZlnx3Mad0sCeDBq3E/HUsjqdqSv1rr7nX5jyFHuCYgYsxnFmYEgozSfUo086AXr+btUew6qfIXLoxcp6W7ufoV9f4STqhzItzhAWP816eJ6bEuVHXHKQSDFxFF5c/OrmxoT7Q+T+ck7frTWkLee0uGrXNhvT2of86UwCPeIrF9d4oJTqwHEVDfMmEdEra+kug4XKt16QwdsQz1ENmOYhUG+ti/kkdd2MA+7Mh/rBD/a8m/z756rtPo7fdO8DA/tbPa4fXO0gFwYmDcG6wXfIQhR6mTOQY5R448H3Hg=
-  file: "./app/build/outputs/apk/app-${BUILD_TYPE}.apk"
+  file:
+    - ./app/build/outputs/apk/app-$BUILD_TYPE.apk
   skip_cleanup: true
   on:
     branch: master
