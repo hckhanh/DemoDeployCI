@@ -10,6 +10,7 @@ env:
 git:
   depth: 1
 notifications:
+  email: false
   webhooks:
     urls: https://webhooks.gitter.im/e/3e8e5ba1788bf56a1116
     on_success: change  # options: [always|never|change] default: always
